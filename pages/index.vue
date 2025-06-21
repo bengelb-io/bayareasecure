@@ -3,13 +3,16 @@ const managerRef = ref()
 const elements = computed(() => managerRef.value?.elementRefs)
 </script>
 <template>
-    <NavElements :elements="elements" :labels="['Pros', 'Cons']" class="fixed top-0 left-0"/>
-    <LayoutManager ref="managerRef">
+    <UtilityNavSite />
+    <UtilityNavPage :elements="elements" :labels="['Header', 'Section', 'Footer']"
+        class="fixed top-0 left-0 hidden sm:block" />
+    <LayoutTransition ref="managerRef">
         <template #transition>
             <USeparator orientation="horizontal" class="w-full" icon="i-heroicons-arrow-down" />
         </template>
-        <LayoutHero class="gap-4 border-2 border-red-500">
-            <div class="flex flex gap-2">
+
+        <LayoutHero class="gap-4">
+            <div class="flex flex gap-2 animate-fade-in">
                 <div class="flex flex-col items-center gap-4">
                     <h1 class="text-2xl font-bold">Pros:</h1>
 
@@ -24,10 +27,10 @@ const elements = computed(() => managerRef.value?.elementRefs)
         </LayoutHero>
 
         <LayoutHero full-height>
-            <LayoutSection>
+            <LayoutSection class="animate-fade-in">
                 <UtilityOverlay pointer-events="background">
                     <template #background>
-                        <SectionSlice :count="4" orientation="horizontal">
+                        <CompositionSlice :count="4" orientation="horizontal">
                             <template #1>
                                 <UtilityPlaceholder />
                             </template>
@@ -38,23 +41,31 @@ const elements = computed(() => managerRef.value?.elementRefs)
                                 <UtilityPlaceholder />
                             </template>
                             <template #3>
-                                <SectionQuarter
+                                <CompositionQuarter
                                     class="hover:scale-105 hover:bg-accented/10 transition-all duration-300">
                                     <template #1>
-                                        <UtilityPlaceholder />
+                                        <UtilityPeek animation="animate-fade-in-right">
+                                            <UtilityPlaceholder />
+                                        </UtilityPeek>
                                     </template>
                                     <template #2>
-                                        <UtilityPlaceholder />
+                                        <UtilityPeek animation="animate-fade-in-left">
+                                            <UtilityPlaceholder />
+                                        </UtilityPeek>
                                     </template>
                                     <template #3>
-                                        <UtilityPlaceholder />
+                                        <UtilityPeek animation="animate-fade-in-right">
+                                            <UtilityPlaceholder />
+                                        </UtilityPeek>
                                     </template>
                                     <template #4>
-                                        <UtilityPlaceholder />
+                                        <UtilityPeek animation="animate-fade-in-left">
+                                            <UtilityPlaceholder />
+                                        </UtilityPeek>
                                     </template>
-                                </SectionQuarter>
+                                </CompositionQuarter>
                             </template>
-                        </SectionSlice>
+                        </CompositionSlice>
                     </template>
                     <template #foreground>
                         <div class="flex flex-col items-center justify-center h-full">
@@ -62,10 +73,9 @@ const elements = computed(() => managerRef.value?.elementRefs)
                                 You're a good person
                             </h1>
                         </div>
-
                     </template>
                 </UtilityOverlay>
             </LayoutSection>
         </LayoutHero>
-    </LayoutManager>
+    </LayoutTransition>
 </template>

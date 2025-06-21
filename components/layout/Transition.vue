@@ -6,7 +6,6 @@ const childRefs: Ref<(HTMLElement | ComponentPublicInstance | null)[]> = ref([])
 function setChildRef(el: HTMLElement | ComponentPublicInstance | null, idx: number) {
     if (el) childRefs.value[idx] = (el as ComponentPublicInstance).$el ?? el
 }
-
 defineExpose({
     elementRefs: childRefs
 })
