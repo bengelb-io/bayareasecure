@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
   ui?: {
     container: string
   }
-  count: number
   orientation: 'horizontal' | 'vertical'
 }>(), {
   ui: () => ({ container: '' }),
   orientation: 'horizontal',
 })
+
 defineOptions({
   inheritAttrs: false,
 })
 
+const slots = useSlots()
 const containerClass = computed(() => {
   if (props.orientation === 'horizontal') {
     return `flex flex-row w-full h-full gap-4 ${props.ui?.container}`
@@ -24,11 +24,15 @@ const containerClass = computed(() => {
 })
 
 </script>
+
 <template>
   <div :class="containerClass">
-    <div v-for="i in props.count" :key="i" class="flex items-center justify-center min-h-[120px] min-w-[120px]"
-      v-bind="$attrs">
-      <slot :name="i" />
-    </div>
+    <template v-if="slots.default">
+      <template v-for="(child, _) in slots.default()" :key="idx">
+        <div class="flex items-center justify-center min-h-[120px] min-w-[120px]" v-bind="$attrs">
+          <component :is="child" />
+        </div>
+      </template>
+    </template>
   </div>
 </template>
