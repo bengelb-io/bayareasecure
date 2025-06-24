@@ -3,7 +3,7 @@ import useInView from '~/composables/useInView'
 const { threshold } = withDefaults(defineProps<{
     threshold?: number
     animation: string
-}>(), { threshold: 1 })
+}>(), { threshold: 0.5 })
 
 const slots = useSlots()
 const element = ref<HTMLElement | null>(null)
