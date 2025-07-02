@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 @keyframes fade-in {
     from {
         opacity: 0;

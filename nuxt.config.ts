@@ -10,5 +10,12 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/fonts',
     '@nuxt/eslint'
-  ]
+  ],
+  runtimeConfig: {
+    public: {
+      companyName: "Bay Area Secure",
+      linkedin: "https://www.linkedin.com/company/bayareasecure/",
+      github: "https://github.com/",
+    }
+  }
 })

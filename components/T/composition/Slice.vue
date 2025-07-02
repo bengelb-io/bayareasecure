@@ -28,7 +28,7 @@ const containerClass = computed(() => {
 <template>
   <div :class="containerClass">
     <template v-if="slots.default">
-      <template v-for="(child, _) in slots.default()" :key="idx">
+      <template v-for="(child, idx) in slots.default()" :key="idx">
         <div class="flex items-center justify-center min-h-[120px] min-w-[120px]" v-bind="$attrs">
           <component :is="child" />
         </div>
