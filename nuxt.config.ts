@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint'
   ],
   image: {
-    provider: 'ipx'
+    provider: 'netlify'
   },
   runtimeConfig: {
     public: {
