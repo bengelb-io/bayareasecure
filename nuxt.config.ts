@@ -6,13 +6,9 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     '@nuxt/icon',
-    '@nuxt/image',
     '@nuxt/fonts',
     '@nuxt/eslint'
-  ],
-  image: {
-    provider: 'netlify'
-  },
+  ], 
   runtimeConfig: {
     public: {
       companyName: "Bay Area Secure",
